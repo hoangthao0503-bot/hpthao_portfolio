@@ -1,9 +1,51 @@
-<svg>
-  <filter id="filter-id">
-    <feGaussianBlur in="SourceGraphic" stdDeviation="5" />
-    <feColorMatrix type="matrix" values="0 0 0 0 0
-                                          0 0 0 0 0
-                                          0 0 0 0 1
-                                          0 0 0 1 0"/>
-  </filter>
-</svg>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <style>
+        /* Add your styles here */
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Portfolio</h1>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p>This is a brief description about myself.</p>
+    </section>
+
+    <section id="projects">
+        <h2>My Projects</h2>
+        <ul>
+            <li>Project 1</li>
+            <li>Project 2</li>
+            <li>Project 3</li>
+        </ul>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <p>Email: <a href="mailto:example@example.com">example@example.com</a></p>
+    </section>
+
+    <svg xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <filter id="fancy">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" />
+            </filter>
+        </defs>
+    </svg>
+
+</body>
+</html>
