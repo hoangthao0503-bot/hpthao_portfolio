@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio — Your Name</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:          #080b10;
+      --bg2:         #0e1118;
+      --surface:     #131720;
+      --border:      #1e2330;
+      --border2:     #252c3d;
+      --muted:       #4b5270;
+      --body:        #8b91aa;
+      --heading:     #e8eaf5;
+      --white:       #f5f6ff;
+      --accent:      #4f8ef7;
+      --accent2:     #a78bfa;
+      --accent3:     #34d399;
+      --glow:        rgba(79,142,247,.18);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--body);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content:''; position:fixed; inset:0; pointer-events:none; z-index:1000;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity:.03;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 6vw; height: 64px;
+      background: rgba(8,11,16,.82);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem;
+      color: var(--white); text-decoration: none; letter-spacing: -.01em;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      text-decoration: none; font-size: .82rem; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--muted); transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; }
+    .hamburger span { width:22px; height:2px; background:var(--body); border-radius:2px; display:block; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh; display: flex; flex-direction: column;
+      justify-content: center; padding: 100px 6vw 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero-glow {
+      position:absolute; width:700px; height:700px;
+      background:radial-gradient(circle,rgba(79,142,247,.13) 0%,transparent 65%);
+      top:-100px; right:-150px; pointer-events:none;
+    }
+    .hero-glow2 {
+      position:absolute; width:400px; height:400px;
+      background:radial-gradient(circle,rgba(167,139,250,.1) 0%,transparent 65%);
+      bottom:60px; left:10%; pointer-events:none;
+    }
+    .hero-badge {
+      display:inline-flex; align-items:center; gap:8px;
+      padding:6px 16px; border:1px solid var(--border2);
+      border-radius:100px; font-size:.75rem; letter-spacing:.1em;
+      text-transform:uppercase; color:var(--muted); margin-bottom:28px;
+      opacity:0; animation:fadeUp .5s .1s forwards;
+    }
+    .hero-badge::before {
+      content:''; width:6px; height:6px; border-radius:50%;
+      background:var(--accent3); box-shadow:0 0 8px var(--accent3);
+    }
+    h1.hero-name {
+      font-family:'Syne',sans-serif; font-weight:800;
+      font-size:clamp(3.2rem,9vw,7.5rem); line-height:1.0;
+      letter-spacing:-.03em; color:var(--white); max-width:900px;
+      opacity:0; animation:fadeUp .6s .25s forwards;
+    }
+    h1.hero-name .highlight {
+      background:linear-gradient(120deg,var(--accent),var(--accent2));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    }
+    .hero-title {
+      margin-top:20px; font-family:'Syne',sans-serif;
+      font-size:clamp(1rem,2.5vw,1.35rem); font-weight:600;
+      color:var(--muted); letter-spacing:.04em;
+      opacity:0; animation:fadeUp .6s .4s forwards;
+    }
+    .hero-title span { color:var(--accent); }
+    .hero-slogan {
+      margin-top:22px; max-width:520px; font-size:1.05rem; color:var(--body);
+      opacity:0; animation:fadeUp .6s .52s forwards;
+    }
+    .hero-ctas {
+      display:flex; gap:14px; flex-wrap:wrap; margin-top:44px;
+      opacity:0; animation:fadeUp .6s .65s forwards;
+    }
+    .btn {
+      display:inline-flex; align-items:center; gap:8px;
+      padding:13px 26px; border-radius:10px; font-size:.9rem;
+      font-weight:500; text-decoration:none; font-family:inherit;
+      transition:transform .2s, box-shadow .2s, opacity .2s;
+      cursor:pointer; border:none;
+    }
+    .btn:hover { transform:translateY(-2px); }
+    .btn-primary {
+      background:var(--accent); color:#fff;
+      box-shadow:0 8px 32px rgba(79,142,247,.3);
+    }
+    .btn-primary:hover { box-shadow:0 12px 40px rgba(79,142,247,.45); }
+    .hero-scroll {
+      position:absolute; bottom:36px; left:6vw;
+      display:flex; align-items:center; gap:10px;
+      font-size:.72rem; letter-spacing:.15em;
+      text-transform:uppercase; color:var(--muted);
+      opacity:0; animation:fadeUp .6s 1s forwards;
+    }
+    .scroll-line { width:40px; height:1px; background:linear-gradient(90deg,var(--accent),transparent); }
+
+    /* ── SECTION BASE ── */
+    section { padding:100px 6vw; }
+    .section-tag {
+      font-size:.72rem; letter-spacing:.18em; text-transform:uppercase;
+      color:var(--accent); margin-bottom:14px;
+      display:flex; align-items:center; gap:10px;
+    }
+    .section-tag::before { content:''; width:24px; height:1px; background:var(--accent); }
+    h2.section-title {
+      font-family:'Syne',sans-serif; font-weight:800;
+      font-size:clamp(2rem,4.5vw,3.2rem); color:var(--heading);
+      letter-spacing:-.02em; line-height:1.1; margin-bottom:16px;
+    }
+    .section-sub { max-width:520px; font-size:.95rem; color:var(--muted); }
+    .section-head { margin-bottom:60px; }
+
+    /* ── PROJECTS GRID ── */
+    .projects-grid {
+      display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:24px;
+    }
+    .project-card {
+      background:var(--surface); border:1px solid var(--border);
+      border-radius:16px; overflow:hidden;
+      transition:transform .25s, border-color .25s, box-shadow .25s;
+      display:flex; flex-direction:column;
+    }
+    .project-card:hover {
+      transform:translateY(-5px); border-color:var(--border2);
+      box-shadow:0 20px 50px rgba(0,0,0,.4);
+    }
+    .project-thumb {
+      height:180px; position:relative; overflow:hidden;
+      display:flex; align-items:center; justify-content:center; font-size:3.5rem;
+    }
+    .thumb-bg { position:absolute; inset:0; }
+    .thumb-icon { position:relative; z-index:1; filter:drop-shadow(0 4px 20px rgba(0,0,0,.4)); }
+    .project-body { padding:24px; flex:1; display:flex; flex-direction:column; gap:12px; }
+    .project-category { font-size:.7rem; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+    .project-title { font-family:'Syne',sans-serif; font-weight:700; font-size:1.1rem; color:var(--heading); }
+    .project-desc { font-size:.875rem; color:var(--muted); line-height:1.65; flex:1; }
+    .project-stack { display:flex; flex-wrap:wrap; gap:7px; margin-top:4px; }
+    .stack-tag {
+      padding:3px 11px; border-radius:100px;
+      background:rgba(255,255,255,.04); border:1px solid var(--border2);
+      font-size:.7rem; color:var(--body); letter-spacing:.03em;
+    }
+    .project-links { display:flex; gap:12px; margin-top:10px; }
+    .project-links a {
+      display:inline-flex; align-items:center; gap:6px;
+      font-size:.8rem; font-weight:500; text-decoration:none;
+      padding:7px 16px; border-radius:8px;
+      border:1px solid var(--border2); color:var(--body); transition:.2s;
+    }
+    .project-links a:hover { color:var(--white); border-color:var(--accent); background:rgba(79,142,247,.06); }
+    .project-links a.demo { background:var(--accent); border-color:var(--accent); color:#fff; }
+    .project-links a.demo:hover { opacity:.85; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding:28px 6vw; border-top:1px solid var(--border);
+      display:flex; justify-content:space-between; align-items:center;
+      flex-wrap:wrap; gap:12px; font-size:.78rem; color:var(--muted);
+      background:var(--bg);
+    }
+    footer a { color:var(--muted); text-decoration:none; }
+    footer a:hover { color:var(--body); }
+
+    /* ── REVEAL ── */
+    .reveal { opacity:0; transform:translateY(22px); transition:opacity .6s ease,transform .6s ease; }
+    .reveal.visible { opacity:1; transform:none; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(18px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width:768px) {
+      .nav-links { display:none; }
+      .hamburger { display:flex; }
+      .projects-grid { grid-template-columns:1fr; }
+      section { padding:80px 5vw; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">YN<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#academic">Academic</a></li>
+    <li><a href="#professional">Professional</a></li>
+    <li><a href="#entrepreneurial">Entrepreneurial</a></li>
+  </ul>
+  <button class="hamburger" id="ham" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+
+  <div class="hero-badge">Open to opportunities</div>
+
+  <h1 class="hero-name">
+    Your<br><span class="highlight">Full Name</span>
+  </h1>
+
+  <p class="hero-title">
+    <span>Data Analyst</span> · Web Developer · Problem Solver
+  </p>
+
+  <p class="hero-slogan">
+    I turn complex data into clear decisions and ship products people actually use.
+    Based in Hanoi, working globally.
+  </p>
+
+  <div class="hero-ctas">
+    <a href="#academic" class="btn btn-primary">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+      View Projects
+    </a>
+  </div>
+
+  <div class="hero-scroll">
+    <span class="scroll-line"></span>
+    Scroll to explore
+  </div>
+</section>
+
+<!-- ══ ACADEMIC PROJECTS ══ -->
+<section id="academic" style="background:var(--bg2)">
+  <div class="section-head reveal">
+    <div class="section-tag">Academic</div>
+    <h2 class="section-title">Academic Projects</h2>
+    <p class="section-sub">Research and university coursework deliverables.</p>
+  </div>
+
+  <div class="projects-grid">
+    <div class="project-card reveal">
+      <div class="project-thumb">
+        <div class="thumb-bg" style="background:linear-gradient(135deg,#0f1729,#1a2440)"></div>
+        <span class="thumb-icon">📊</span>
+      </div>
+      <div class="project-body">
+        <span class="project-category">Academic · 2024</span>
+        <h3 class="project-title">Sales Dashboard & Forecasting Model</h3>
+        <p class="project-desc">Analyzed 3 years of retail data to identify seasonal patterns. Built an interactive Tableau dashboard and a predictive model achieving 91% accuracy.</p>
+        <div class="project-stack">
+          <span class="stack-tag">Python</span><span class="stack-tag">Tableau</span>
+          <span class="stack-tag">scikit-learn</span><span class="stack-tag">PostgreSQL</span>
+        </div>
+        <div class="project-links">
+          <a href="#" class="demo">↗ Demo</a>
+          <a href="#">⌥ GitHub</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-thumb">
+        <div class="thumb-bg" style="background:linear-gradient(135deg,#1a1209,#2e2010)"></div>
+        <span class="thumb-icon">🔍</span>
+      </div>
+      <div class="project-body">
+        <span class="project-category">Academic · 2023</span>
+        <h3 class="project-title">NLP Sentiment Analysis — Vietnamese Reviews</h3>
+        <p class="project-desc">Research project classifying sentiment in 50k Vietnamese e-commerce reviews using fine-tuned PhoBERT. Published findings at university conference.</p>
+        <div class="project-stack">
+          <span class="stack-tag">Python</span><span class="stack-tag">HuggingFace</span>
+          <span class="stack-tag">PhoBERT</span><span class="stack-tag">PyTorch</span>
+        </div>
+        <div class="project-links">
+          <a href="#" class="demo">↗ Paper</a>
+          <a href="#">⌥ GitHub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROFESSIONAL EXPERIENCE ══ -->
+<section id="professional" style="background:var(--bg)">
+  <div class="section-head reveal">
+    <div class="section-tag">Professional</div>
+    <h2 class="section-title">Professional Experience</h2>
+    <p class="section-sub">Work from internships, consulting, and full-time roles.</p>
+  </div>
+
+  <div class="projects-grid">
+    <div class="project-card reveal">
+      <div class="project-thumb">
+        <div class="thumb-bg" style="background:linear-gradient(135deg,#0f2918,#1a3d26)"></div>
+        <span class="thumb-icon">🌐</span>
+      </div>
+      <div class="project-body">
+        <span class="project-category">Professional · 2024</span>
+        <h3 class="project-title">Internal HR Management Platform</h3>
+        <p class="project-desc">Led front-end development of a full-stack HR portal used by 200+ employees. Cut manual reporting time by 60% through automated workflows.</p>
+        <div class="project-stack">
+          <span class="stack-tag">Next.js</span><span class="stack-tag">Drizzle ORM</span>
+          <span class="stack-tag">TypeScript</span><span class="stack-tag">PostgreSQL</span>
+        </div>
+        <div class="project-links">
+          <a href="#" class="demo">↗ Demo</a>
+          <a href="#">⌥ GitHub</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-thumb">
+        <div class="thumb-bg" style="background:linear-gradient(135deg,#081a1a,#0f2e2e)"></div>
+        <span class="thumb-icon">📈</span>
+      </div>
+      <div class="project-body">
+        <span class="project-category">Professional · 2023</span>
+        <h3 class="project-title">Customer Churn Analysis — FinTech</h3>
+        <p class="project-desc">Identified top 5 churn drivers from 100k+ customer records. Delivered executive report with segmentation strategy that reduced churn by 18%.</p>
+        <div class="project-stack">
+          <span class="stack-tag">SQL</span><span class="stack-tag">Excel</span>
+          <span class="stack-tag">Power BI</span><span class="stack-tag">Python</span>
+        </div>
+        <div class="project-links">
+          <a href="#" class="demo">↗ Report</a>
+          <a href="#">⌥ GitHub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ENTREPRENEURIAL PROJECTS ══ -->
+<section id="entrepreneurial" style="background:var(--bg2)">
+  <div class="section-head reveal">
+    <div class="section-tag">Entrepreneurial</div>
+    <h2 class="section-title">Entrepreneurial Projects</h2>
+    <p class="section-sub">Startups, side hustles, and personal builds.</p>
+  </div>
+
+  <div class="projects-grid">
+    <div class="project-card reveal">
+      <div class="project-thumb">
+        <div class="thumb-bg" style="background:linear-gradient(135deg,#1d0f29,#2d1840)"></div>
+        <span class="thumb-icon">🚀</span>
+      </div>
+      <div class="project-body">
+        <span class="project-category">Entrepreneurial · 2023</span>
+        <h3 class="project-title">EdTech SaaS — StudyPath</h3>
+        <p class="project-desc">Co-founded a micro-SaaS helping students plan study schedules with AI. Reached 500+ signups in 3 months, currently generating MRR.</p>
+        <div class="project-stack">
+          <span class="stack-tag">React</span><span class="stack-tag">Node.js</span>
+          <span class="stack-tag">OpenAI API</span><span class="stack-tag">Stripe</span>
+        </div>
+        <div class="project-links">
+          <a href="#" class="demo">↗ Demo</a>
+          <a href="#">⌥ GitHub</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-thumb">
+        <div class="thumb-bg" style="background:linear-gradient(135deg,#0d1a08,#162e0d)"></div>
+        <span class="thumb-icon">🌱</span>
+      </div>
+      <div class="project-body">
+        <span class="project-category">Entrepreneurial · 2022</span>
+        <h3 class="project-title">AgriLink — Farm-to-Table Marketplace</h3>
+        <p class="project-desc">Built an MVP connecting local farmers to urban consumers in Hanoi. Validated the concept with 40 pilot users; pivoted after learning unit economics.</p>
+        <div class="project-stack">
+          <span class="stack-tag">React Native</span><span class="stack-tag">Firebase</span>
+          <span class="stack-tag">JavaScript</span>
+        </div>
+        <div class="project-links">
+          <a href="#">⌥ GitHub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 Your Name. All rights reserved.</span>
+  <span>Built with HTML · CSS · JS · Hosted on GitHub Pages</span>
+</footer>
+
+<script>
+  // ── Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ── Mobile hamburger
+  const ham = document.getElementById('ham');
+  const navLinks = document.querySelector('.nav-links');
+  let menuOpen = false;
+  ham.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    navLinks.style.cssText = menuOpen
+      ? 'display:flex;flex-direction:column;position:fixed;top:64px;left:0;right:0;background:rgba(8,11,16,.97);padding:24px 6vw;gap:20px;border-bottom:1px solid #1e2330;z-index:99;'
+      : '';
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => { menuOpen = false; navLinks.style.cssText = ''; });
+  });
+</script>
+</body>
+</html>
