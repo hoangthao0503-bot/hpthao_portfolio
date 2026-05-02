@@ -3,49 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <style>
-        /* Add your styles here */
-    </style>
+    <title>Hoang Phuong Thao | Portfolio</title>
+    <meta name="description" content="Portfolio of Hoang Phuong Thao showcasing Academic Projects, Professional Experience, and Entrepreneurial Projects.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Welcome to My Portfolio</h1>
-        <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+    <!-- Navbar -->
+    <nav id="navbar">
+        <div class="nav-content">
+            <a href="#hero" class="logo">PhuongThao.</a>
+            <ul class="nav-links">
+                <li><a href="#academic">Academic</a></li>
+                <li><a href="#professional">Professional</a></li>
+                <li><a href="#entrepreneurial">Entrepreneurial</a></li>
             </ul>
-        </nav>
+            <a href="https://github.com/hoangthao0503" target="_blank" rel="noopener noreferrer" class="btn-github">GitHub Profile</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="hero" class="section hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Building <span class="gradient-text">Digital</span> Experiences</h1>
+            <p class="hero-subtitle">Hi, I'm Hoang Phuong Thao, a Business Data Analytics major skilled in Python, Tableau, and SQL. A passionate builder focusing on innovative academic research, professional engineering, and entrepreneurial ventures.</p>
+            <div class="hero-cta">
+                <a href="#academic" class="btn btn-primary">View My Work</a>
+                <a href="https://github.com/hoangthao0503" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Visit GitHub</a>
+            </div>
+        </div>
+        <div class="hero-background"></div>
     </header>
 
-    <section id="about">
-        <h2>About Me</h2>
-        <p>This is a brief description about myself.</p>
+    <!-- Academic Projects -->
+    <section id="academic" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Academic Projects</h2>
+            <p class="section-desc">Coursework and university-level research projects.</p>
+        </div>
+        <div class="grid-container" id="academic-grid">
+            <!-- Rendered by JS -->
+        </div>
     </section>
 
-    <section id="projects">
-        <h2>My Projects</h2>
-        <ul>
-            <li>Project 1</li>
-            <li>Project 2</li>
-            <li>Project 3</li>
-        </ul>
+    <!-- Professional Experience -->
+    <section id="professional" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Professional Experience</h2>
+            <p class="section-desc">Industry roles, internships, and applied engineering.</p>
+        </div>
+        <div class="timeline" id="professional-timeline">
+            <!-- Rendered by JS -->
+        </div>
     </section>
 
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <p>Email: <a href="mailto:example@example.com">example@example.com</a></p>
+    <!-- Entrepreneurial Projects -->
+    <section id="entrepreneurial" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Entrepreneurial Projects</h2>
+            <p class="section-desc">Startups, side hustles, and personal ventures.</p>
+        </div>
+        <div class="grid-container" id="entrepreneurial-grid">
+            <!-- Rendered by JS -->
+        </div>
     </section>
 
-    <svg xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <filter id="fancy">
-                <feGaussianBlur in="SourceGraphic" stdDeviation="10" />
-            </filter>
-        </defs>
-    </svg>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">PhuongThao.</div>
+            <p>&copy; <span id="current-year"></span> Hoang Phuong Thao. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="mailto:hpthao537@gmail.com">hpthao537@gmail.com</a>
+                <span>|</span>
+                <span>0337492206</span>
+                <span>|</span>
+                <a href="https://github.com/hoangthao0503" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+        </div>
+    </footer>
 
+    <!-- Scripts -->
+    <script src="data.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
