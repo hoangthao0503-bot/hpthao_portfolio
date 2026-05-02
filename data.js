@@ -5,7 +5,8 @@ const portfolioData = {
             title: "Predict Term Deposit Bank Marketing",
             description: "A machine learning project utilizing predictive modeling to forecast term deposit subscriptions for bank marketing campaigns.",
             tags: ["Python", "Jupyter Notebook", "Machine Learning"],
-            githubLink: "https://github.com/hoangthao0503-bot/predict-term-deposit-bank-marketing"
+            githubLink: "https://github.com/hoangthao0503-bot/predict-term-deposit-bank-marketing",
+            liveLink: "https://hoangthao0503-bot.github.io/predict-term-deposit-bank-marketing/"
         }
     ],
     professional: [
@@ -25,25 +26,29 @@ const portfolioData = {
             title: "SSI Risk Optimizer",
             description: "An advanced financial tool developed in Python to optimize risk management and investment strategies for SSI securities.",
             tags: ["Python", "Risk Management", "Optimization"],
-            githubLink: "https://github.com/hoangthao0503-bot/ssi-risk-optimizer"
+            githubLink: "https://github.com/hoangthao0503-bot/ssi-risk-optimizer",
+            liveLink: "https://ssi-risk-optimizer.vercel.app"
         },
         {
             title: "Nhật ký giao dịch",
             description: "A trading journal project designed to log, track, and review investment trades for continuous improvement.",
             tags: ["JavaScript", "Trading"],
-            githubLink: "https://github.com/hoangthao0503-bot/Nhat_ky_giao_dich"
+            githubLink: "https://github.com/hoangthao0503-bot/Nhat_ky_giao_dich",
+            liveLink: "https://hoangthao0503-bot.github.io/Nhat_ky_giao_dich/"
         },
         {
             title: "Nhật ký giao dịch SSI",
             description: "A specialized trading journal web application built to help investors track, analyze, and improve their trading decisions.",
             tags: ["JavaScript", "HTML", "Trading"],
-            githubLink: "https://github.com/hoangthao0503-bot/Nhat_ky_giao_dich_SSI"
+            githubLink: "https://github.com/hoangthao0503-bot/Nhat_ky_giao_dich_SSI",
+            liveLink: "https://nhat-ky-giao-dich-ssi.vercel.app"
         },
         {
             title: "Làm việc kiểu Cụ Hồ",
             description: "An interactive educational web platform featuring structured learning modules based on the 'Làm giàu kiểu Cụ Hồ' podcast series.",
             tags: ["JavaScript", "UI/UX", "Education"],
-            githubLink: "https://github.com/hoangthao0503-bot/lam-viec-kieu-cu-ho"
+            githubLink: "https://github.com/hoangthao0503-bot/lam-viec-kieu-cu-ho",
+            liveLink: "https://hoangthao0503-bot.github.io/lam-viec-kieu-cu-ho/"
         },
         {
             title: "VN30 Analysis",
